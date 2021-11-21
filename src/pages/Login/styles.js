@@ -8,7 +8,7 @@ export const Div = styled.div`
   height: 100vh;
 `;
 
-export const ContainerLogin = styled.div`
+export const ContainerLogin = styled.form`
   margin-top: 56px;
   height: 426px;
   width: 500px;

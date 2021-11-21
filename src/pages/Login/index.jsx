@@ -1,5 +1,6 @@
 import api from "../../services/api";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
+import { toast } from 'react-hot-toast'
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,17 +28,23 @@ const Login = ({ logged, setLogged }) => {
 
   const onSubmitFunction = (data) => {
     api
-      .post("/sessions", data)
-      .then((response) => {
-        const { token, user } = response.data;
-        localStorage.clear();
-        localStorage.setItem("@kenziehub:token", JSON.stringify(token));
-        localStorage.setItem("@kenziehub:user", JSON.stringify(user));
-        setLogged(true);
-        return history.push("/dashboard");
-      })
-      .catch((error) => console.log(error));
+    .post("/sessions", data)
+    .then((response) => {
+      const { token, user } = response.data;
+      toast.success('Login realizado com sucesso')
+      localStorage.clear();
+      localStorage.setItem("@kenziehub:token", JSON.stringify(token));
+      localStorage.setItem("@kenziehub:user", JSON.stringify(user));
+      setLogged(true);
+      return history.push("/dashboard");
+    })
+    .catch((error) => toast.error('Email ou senha inválido'));
   };
+
+
+  if(logged){
+    <Redirect to = '/dashboard'/>
+  }
 
   return (
     <Div>
@@ -58,12 +65,12 @@ const Login = ({ logged, setLogged }) => {
           variant="outlined"
           {...register("password")}
         />
-        <ButtonPurple>Logar</ButtonPurple>
+        <ButtonPurple type ={'submit'}>Logar</ButtonPurple>
         <MsgLogin>
           Criar uma Página para mostrar suas{" "}
           <MsgLoginBlack>habilidades metas e progresso</MsgLoginBlack>
         </MsgLogin>
-        <ButtonPurple type="submit" onClick={() => history.push("/register")}>
+        <ButtonPurple onClick={() => history.push("/register")}>
           Cadastrar
         </ButtonPurple>
       </ContainerLogin>

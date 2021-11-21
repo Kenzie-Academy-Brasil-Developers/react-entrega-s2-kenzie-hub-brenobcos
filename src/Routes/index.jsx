@@ -16,20 +16,20 @@ const Routes = () => {
   }, [logged]);
 
   return (
-      <div>
-            <Switch>
-                <Route exact path="/">
-                    <Login logged={logged} setLogged={setLogged}></Login>
-                </Route>
-                <Route exact path="/register">
-                    <Register logged={logged} setLogged={setLogged}></Register>
-                </Route>
-                <Route exact path="/dashboard">
-                    <Dashboard logged={logged} setLogged={setLogged}></Dashboard>
-                </Route>
-            </Switch>
-      </div>
+    <div>
+      <Switch>
+        <Route exact path="/">
+          <Login logged={logged} setLogged={setLogged}></Login>
+        </Route>
+        <Route exact path="/register">
+          <Register logged={logged} setLogged={setLogged}></Register>
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard logged={logged} setLogged={setLogged}></Dashboard>
+        </Route>
+      </Switch>
+    </div>
   );
 };
 
-export default Routes
+export default Routes;
