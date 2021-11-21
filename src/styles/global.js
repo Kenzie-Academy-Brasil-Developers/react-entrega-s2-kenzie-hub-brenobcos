@@ -18,7 +18,7 @@ export const Global = createGlobalStyle`
         --grey-0: #F5F5F5;
 
         --green-transp:#11995E;
-        --purple-transp: #403CAA;
+        --purple-transp: #EDEDFE;
     }
 
     body{
