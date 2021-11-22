@@ -1,15 +1,15 @@
 import api from "../../services/api";
 import { useHistory, Redirect } from "react-router-dom";
-import { toast } from 'react-hot-toast'
+import { toast } from "react-hot-toast";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField } from "@mui/material";
+import { TextField, InputLabel, NativeSelect, FormHelperText } from "@mui/material";
 import ButtonPurple from "../../components/ButtonPurple";
 import Title from "../../components/Title";
-import { ButtonModule, ContainerModule, ContainerRegister, DivRegister, Titlemodule } from "./styles";
+import { ContainerRegister, DivRegister, MsgError } from "./styles";
 
-const Register = ({logged}) => {
+const Register = ({ logged }) => {
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -24,7 +24,10 @@ const Register = ({logged}) => {
     bio: yup.string().required("Campo obrigatório"),
     contact: yup.string().required("Campo obrigatório"),
     course_module: yup.string().required("Campo obrigatório"),
-    password: yup.string().required("Campo obrigatório"),
+    password: yup
+      .string()
+      .min(6, "Mínimo de 6 caracteres")
+      .required("Campo obrigatório"),
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password")], "Senhas não coincidem")
@@ -34,80 +37,110 @@ const Register = ({logged}) => {
   const {
     register,
     handleSubmit,
-    formState: { error },
+    formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmitFunction = (data) => {
-    delete data.confirm_password
-    api.post('/users', data)
-    .then(() => {
-      toast.success('Cadastro realizado com sucesso')
-      history.push('/')
-    }).catch((error) => {
-      toast.error('Email duplicado, tente outro email')
-    })
-  }
+  const onSubmitFunction = ({
+    email,
+    password,
+    name,
+    bio,
+    contact,
+    course_module,
+  }) => {
+    const user = { email, password, name, bio, contact, course_module };
 
-  if(logged){
-    <Redirect to = '/dashboard'/>
+    api
+      .post("/users", user)
+      .then(() => {
+        toast.success("Cadastro realizado com sucesso");
+        return history.push("/");
+      })
+      .catch((errors) => toast.error("Email duplicado, tente outro email"));
+  };
+
+  if (logged) {
+    <Redirect to="/dashboard" />;
   }
 
   return (
     <DivRegister>
       <Title />
-      <ContainerRegister onSubmit={handleSubmit(onSubmitFunction)}>
+      <ContainerRegister
+        type={"submit"}
+        onSubmit={handleSubmit(onSubmitFunction)}
+      >
         <TextField
           margin="normal"
           fullWidth
-          label="Nome"
+          label="Nome *"
           variant="outlined"
           {...register("name")}
         />
+        <MsgError>{errors.name?.message}</MsgError>
         <TextField
           margin="normal"
           fullWidth
-          label="Email"
+          label="Email *"
           variant="outlined"
           {...register("email")}
         />
+        <MsgError>{errors.email?.message}</MsgError>
         <TextField
           margin="normal"
           fullWidth
-          label="Bio"
+          label="Bio *"
           variant="outlined"
           {...register("bio")}
         />
+        <MsgError>{errors.bio?.message}</MsgError>
         <TextField
           margin="normal"
           fullWidth
-          label="Contato"
+          label="Contato *"
           variant="outlined"
           {...register("contact")}
         />
-        <Titlemodule>Selecionar módulo:</Titlemodule>
-        <ContainerModule>
-            <ButtonModule>Primeiro</ButtonModule>
-            <ButtonModule>Segundo</ButtonModule>
-            <ButtonModule>Terceiro</ButtonModule>
-            <ButtonModule>Quarto</ButtonModule>
-        </ContainerModule>
+        <MsgError>{errors.contact?.message}</MsgError>
+        <InputLabel htmlFor="select">Selecionar módulo *:</InputLabel>
+        <NativeSelect
+          {...register("course_module")}
+          fullWidth
+          labelId="Required"
+        >
+          <option value={"Primeiro módulo (Introdução ao Frontend)"}>
+            Primeiro módulo
+          </option>
+          <option value={"Segundo módulo (Frontend Avançado)"}>
+            Segundo módulo
+          </option>
+          <option value={"Terceiro módulo (Introdução ao Backend)"}>
+            Terceiro móduro
+          </option>
+          <option value={"Quarto módulo (Backend Avançado)"}>
+            Quarto módulo
+          </option>
+        </NativeSelect>
+        <FormHelperText>Campo obrigatório</FormHelperText>
         <TextField
           margin="normal"
           type="password"
           fullWidth
-          label="Senha"
+          label="Senha *"
           variant="outlined"
           {...register("password")}
         />
+        <MsgError>{errors.password?.message}</MsgError>
         <TextField
           margin="normal"
           type="password"
           fullWidth
-          label="Confirmar Senha"
+          label="Confirmar Senha *"
           variant="outlined"
           {...register("confirm_password")}
         />
-        <ButtonPurple type='submit'>Cadastrar</ButtonPurple>
+        <MsgError>{errors.confirm_password?.message}</MsgError>
+        <ButtonPurple type="submit">Cadastrar</ButtonPurple>
       </ContainerRegister>
     </DivRegister>
   );

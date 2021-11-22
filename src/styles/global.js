@@ -13,11 +13,12 @@ export const Global = createGlobalStyle`
         --color-secondary: #11995E;
         --white-color: #FFFFFF;
         --black-color: #000000;
+        --red-color:#C4302B;
         --grey-100: #333333;
         --grey-50: #999999;
         --grey-0: #F5F5F5;
 
-        --green-transp:#11995E;
+        --green-transp: #E7F5EF;
         --purple-transp: #EDEDFE;
     }
 

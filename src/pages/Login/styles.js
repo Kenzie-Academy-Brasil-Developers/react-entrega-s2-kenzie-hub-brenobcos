@@ -33,3 +33,9 @@ export const MsgLogin = styled.span`
 export const MsgLoginBlack = styled(MsgLogin)`
   color: var(--black-color);
 `;
+
+export const MsgError = styled.span`
+  font-size: 10px;
+  color: var(--red-color);
+  margin-bottom:2px;
+`

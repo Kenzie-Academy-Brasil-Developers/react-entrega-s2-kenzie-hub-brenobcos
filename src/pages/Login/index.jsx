@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@mui/material";
-import { ContainerLogin, Div, MsgLogin, MsgLoginBlack } from "./styles";
+import { ContainerLogin, Div, MsgError, MsgLogin, MsgLoginBlack } from "./styles";
 import ButtonPurple from "../../components/ButtonPurple";
 import Title from "../../components/Title";
 
@@ -23,7 +23,7 @@ const Login = ({ logged, setLogged }) => {
   const {
     register,
     handleSubmit,
-    formState: { error },
+    formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmitFunction = (data) => {
@@ -57,6 +57,7 @@ const Login = ({ logged, setLogged }) => {
           variant="outlined"
           {...register("email")}
         />
+        <MsgError>{errors.email?.message}</MsgError>
         <TextField
           margin="normal"
           fullWidth
@@ -65,6 +66,7 @@ const Login = ({ logged, setLogged }) => {
           variant="outlined"
           {...register("password")}
         />
+        <MsgError>{errors.password?.message}</MsgError>
         <ButtonPurple type ={'submit'}>Logar</ButtonPurple>
         <MsgLogin>
           Criar uma Página para mostrar suas{" "}

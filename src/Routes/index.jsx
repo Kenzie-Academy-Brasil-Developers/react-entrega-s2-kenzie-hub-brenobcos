@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
@@ -25,7 +25,12 @@ const Routes = () => {
           <Register logged={logged} setLogged={setLogged}></Register>
         </Route>
         <Route exact path="/dashboard">
-          <Dashboard logged={logged} setLogged={setLogged}></Dashboard>
+        <Dashboard logged={logged} setLogged={setLogged}></Dashboard>
+        {/* Retirar após finalizar o dashboard */}
+        {/* {!logged ? (
+            <Redirect to="/" />
+          ) : (
+          )} */}
         </Route>
       </Switch>
     </div>

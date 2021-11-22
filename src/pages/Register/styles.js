@@ -8,7 +8,7 @@ export const DivRegister = styled.div`
   height: 100vh;
 `;
 
-export const ContainerRegister = styled.div`
+export const ContainerRegister = styled.form`
   margin-top: 56px;
   height: 770px;
   width: 500px;
@@ -20,31 +20,8 @@ export const ContainerRegister = styled.div`
   align-items: center;
 `;
 
-export const ContainerModule = styled.div`
-  width: 500px;
-  display: flex;
-  justify-content: space-around;
-  align-items: stretch;
-`;
-
-export const Titlemodule = styled.span`
-  color: var(--grey-100);
-  margin: 15px 0px;
-  font-size: 14px;
-  font-weight: 500;
-`;
-
-export const ButtonModule = styled.button`
-  color: var(--color-primary);
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 15px;
-  font-size: 14px;
-  font-weight: 500;
-
-  :hover {
-    background-color: var(--purple-transp);
-    border-radius: 8px;
-  }
-`;
+export const MsgError = styled.span`
+  font-size: 10px;
+  color: var(--red-color);
+  margin-bottom:2px;
+`
