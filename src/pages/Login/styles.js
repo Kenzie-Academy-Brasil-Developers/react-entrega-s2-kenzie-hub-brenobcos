@@ -11,7 +11,7 @@ export const Div = styled.div`
 export const ContainerLogin = styled.form`
   margin-top: 56px;
   height: 426px;
-  width: 500px;
+  width: 400px;
   border-radius: 5px;
   border: 2px solid var(--grey-0);
   display: flex;
@@ -37,5 +37,20 @@ export const MsgLoginBlack = styled(MsgLogin)`
 export const MsgError = styled.span`
   font-size: 10px;
   color: var(--red-color);
-  margin-bottom:2px;
-`
+  margin-bottom: 2px;
+`;
+export const ButtonLog = styled.button`
+  background-color: var(--color-primary);
+  color: var(--white-color);
+  width: 400px;
+  height: 60px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+
+  :hover {
+    border: 2px solid var(--black-color);
+  }
+`;

@@ -25,12 +25,8 @@ const Routes = () => {
           <Register logged={logged} setLogged={setLogged}></Register>
         </Route>
         <Route exact path="/dashboard">
-        <Dashboard logged={logged} setLogged={setLogged}></Dashboard>
-        {/* Retirar após finalizar o dashboard */}
-        {/* {!logged ? (
-            <Redirect to="/" />
-          ) : (
-          )} */}
+          <Dashboard logged={logged} setLogged={setLogged}></Dashboard>
+          {!logged ? <Redirect to="/" /> : <Redirect to="dashboard" />}
         </Route>
       </Switch>
     </div>

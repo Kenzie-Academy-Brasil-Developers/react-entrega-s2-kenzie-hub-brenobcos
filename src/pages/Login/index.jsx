@@ -5,8 +5,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@mui/material";
-import { ContainerLogin, Div, MsgError, MsgLogin, MsgLoginBlack } from "./styles";
-import ButtonPurple from "../../components/ButtonPurple";
+import { ContainerLogin, Div, MsgError, MsgLogin, MsgLoginBlack, ButtonLog } from "./styles";
 import Title from "../../components/Title";
 
 const Login = ({ logged, setLogged }) => {
@@ -67,14 +66,14 @@ const Login = ({ logged, setLogged }) => {
           {...register("password")}
         />
         <MsgError>{errors.password?.message}</MsgError>
-        <ButtonPurple type ={'submit'}>Logar</ButtonPurple>
+        <ButtonLog type ={'submit'}>Logar</ButtonLog>
         <MsgLogin>
           Criar uma Página para mostrar suas{" "}
           <MsgLoginBlack>habilidades metas e progresso</MsgLoginBlack>
         </MsgLogin>
-        <ButtonPurple onClick={() => history.push("/register")}>
+        <ButtonLog onClick={() => history.push("/register")}>
           Cadastrar
-        </ButtonPurple>
+        </ButtonLog>
       </ContainerLogin>
     </Div>
   );

@@ -4,8 +4,13 @@ import { toast } from "react-hot-toast";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField, InputLabel, NativeSelect, FormHelperText } from "@mui/material";
-import ButtonPurple from "../../components/ButtonPurple";
+import {
+  TextField,
+  InputLabel,
+  NativeSelect,
+  FormHelperText,
+} from "@mui/material";
+import ButtonModel from "../../components/ButtonModel";
 import Title from "../../components/Title";
 import { ContainerRegister, DivRegister, MsgError } from "./styles";
 
@@ -71,6 +76,7 @@ const Register = ({ logged }) => {
         onSubmit={handleSubmit(onSubmitFunction)}
       >
         <TextField
+          size="small"
           margin="normal"
           fullWidth
           label="Nome *"
@@ -79,6 +85,7 @@ const Register = ({ logged }) => {
         />
         <MsgError>{errors.name?.message}</MsgError>
         <TextField
+          size="small"
           margin="normal"
           fullWidth
           label="Email *"
@@ -87,6 +94,7 @@ const Register = ({ logged }) => {
         />
         <MsgError>{errors.email?.message}</MsgError>
         <TextField
+          size="small"
           margin="normal"
           fullWidth
           label="Bio *"
@@ -95,6 +103,7 @@ const Register = ({ logged }) => {
         />
         <MsgError>{errors.bio?.message}</MsgError>
         <TextField
+          size="small"
           margin="normal"
           fullWidth
           label="Contato *"
@@ -104,6 +113,7 @@ const Register = ({ logged }) => {
         <MsgError>{errors.contact?.message}</MsgError>
         <InputLabel htmlFor="select">Selecionar módulo *:</InputLabel>
         <NativeSelect
+          size="small"
           {...register("course_module")}
           fullWidth
           labelId="Required"
@@ -123,6 +133,7 @@ const Register = ({ logged }) => {
         </NativeSelect>
         <FormHelperText>Campo obrigatório</FormHelperText>
         <TextField
+          size="small"
           margin="normal"
           type="password"
           fullWidth
@@ -132,6 +143,7 @@ const Register = ({ logged }) => {
         />
         <MsgError>{errors.password?.message}</MsgError>
         <TextField
+          size="small"
           margin="normal"
           type="password"
           fullWidth
@@ -140,7 +152,7 @@ const Register = ({ logged }) => {
           {...register("confirm_password")}
         />
         <MsgError>{errors.confirm_password?.message}</MsgError>
-        <ButtonPurple type="submit">Cadastrar</ButtonPurple>
+        <ButtonModel type="submit">Cadastrar</ButtonModel>
       </ContainerRegister>
     </DivRegister>
   );

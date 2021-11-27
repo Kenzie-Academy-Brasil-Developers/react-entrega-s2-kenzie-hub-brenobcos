@@ -1,9 +1,11 @@
-import { TitleStyle } from "./styles"
+import { TitleStyle } from "./styles";
 
 const Title = () => {
-    return (
-        <TitleStyle>Kenzie <span>HUB</span></TitleStyle>
-    )
-}
+  return (
+    <TitleStyle>
+      Kenzie <span>HUB</span>
+    </TitleStyle>
+  );
+};
 
-export default Title
+export default Title;

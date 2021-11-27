@@ -1,12 +1,12 @@
-import Title from "../Title"
-import { HeaderStyle } from "./styles"
+import Title from "../Title";
+import { HeaderStyle } from "./styles";
 
 const Header = () => {
-    return (
-        <HeaderStyle>
-            <Title />
-        </HeaderStyle>
-    )
-}
+  return (
+    <HeaderStyle>
+      <Title />
+    </HeaderStyle>
+  );
+};
 
-export default Header
+export default Header;

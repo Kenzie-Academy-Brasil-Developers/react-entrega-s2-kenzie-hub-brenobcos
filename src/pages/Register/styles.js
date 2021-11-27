@@ -9,9 +9,8 @@ export const DivRegister = styled.div`
 `;
 
 export const ContainerRegister = styled.form`
-  margin-top: 56px;
-  height: 770px;
-  width: 500px;
+  height: 600px;
+  width: 300px;
   border-radius: 5px;
   border: 2px solid var(--grey-0);
   display: flex;
@@ -23,5 +22,5 @@ export const ContainerRegister = styled.form`
 export const MsgError = styled.span`
   font-size: 10px;
   color: var(--red-color);
-  margin-bottom:2px;
-`
+  margin-bottom: 2px;
+`;
